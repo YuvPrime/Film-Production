@@ -26,67 +26,31 @@ public class Film {
         	 
           String tagname = xpp.getName();
           
-          switch (eventType) {
-          
-          case XmlPullParser.START_TAG:
-              if (tagname.equalsIgnoreCase("item")) {
-                  System.out.println("This is the item tag : " +text);
-              }
-              break;
+  if (tagname!=null) {
 
-          case XmlPullParser.TEXT:
-              text = xpp.getText();
-              break;
-
-          case XmlPullParser.END_TAG:
-        	  
-              if (tagname.equalsIgnoreCase("item")) {
-            	  
-                  System.out.println("This is item end tag " +text);
-
-              } else if (tagname.equalsIgnoreCase("title")) {
-            	  
-                  System.out.println("This is title tag " +text);
-            	  
-              
-            	  
-              } else if (tagname.equalsIgnoreCase("link")) {
-            	  
-                  System.out.println("This is link tag " +text);
-
-            	  
-              } else if (tagname.equalsIgnoreCase("pubDate")) {
-            	  
-                  System.out.println("This is pubDate tag " +text);
-
-            	  
-              } 
-              
-              else if (tagname.equalsIgnoreCase("description")) {
-            	  
-                  System.out.println("This is employee type tag " +text);
-                  
-//                   org.jsoup.nodes.Document docHtml = Jsoup.parse(text);
-//                   org.jsoup.select.Elements imgEle = docHtml.select("img");
-//                   System.out.println((imgEle).attr("abs:src"));
-                  
-              }
-
-              break;
-
-          default:
-              break;
-          }
-        	 
+	  if (xpp.getEventType() == XmlPullParser.START_TAG) {
+         
+	  
+        if (tagname.equalsIgnoreCase("item")) 
+        {
+            System.out.println("This is the item tag : " +tagname);
+        }
         
-          eventType = xpp.next();
-         }
-     }
+        
+  	} // end of start tag check 
+
+  			} // end of if null check	 
+        	
+  			eventType = xpp.next();
+        
+         } // end of while loop
+         
+     } // end of try 
 		  
 		  catch (XmlPullParserException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {
-	            e.printStackTrace();
+	            e.printStackTrace(); 
 	        }
  }
 }
