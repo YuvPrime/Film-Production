@@ -29,8 +29,8 @@ public class Film {
           switch (eventType) {
           
           case XmlPullParser.START_TAG:
-              if (tagname.equalsIgnoreCase("employee")) {
-                  System.out.println("This is employee start tag");
+              if (tagname.equalsIgnoreCase("item")) {
+                  System.out.println("This is the item tag : " +text);
               }
               break;
 
@@ -40,34 +40,27 @@ public class Film {
 
           case XmlPullParser.END_TAG:
         	  
-              if (tagname.equalsIgnoreCase("employee")) {
+              if (tagname.equalsIgnoreCase("item")) {
             	  
-                  System.out.println("This is employee end tag " +text);
+                  System.out.println("This is item end tag " +text);
 
-              } else if (tagname.equalsIgnoreCase("name")) {
+              } else if (tagname.equalsIgnoreCase("title")) {
             	  
-                  System.out.println("This is employee name tag " +text);
+                  System.out.println("This is title tag " +text);
             	  
-              } else if (tagname.equalsIgnoreCase("id")) {
+              
             	  
-                  System.out.println("This is employee id tag " +text);
-
+              } else if (tagname.equalsIgnoreCase("link")) {
             	  
-              } else if (tagname.equalsIgnoreCase("department")) {
-            	  
-                  System.out.println("This is employee department tag " +text);
+                  System.out.println("This is link tag " +text);
 
             	  
-              } else if (tagname.equalsIgnoreCase("email")) {
+              } else if (tagname.equalsIgnoreCase("pubDate")) {
             	  
-                  System.out.println("This is employee email tag " +text);
+                  System.out.println("This is pubDate tag " +text);
 
             	  
-              } else if (tagname.equalsIgnoreCase("type")) {
-            	  
-                  System.out.println("This is employee type tag " +text);
-
-              }
+              } 
               
               else if (tagname.equalsIgnoreCase("description")) {
             	  
