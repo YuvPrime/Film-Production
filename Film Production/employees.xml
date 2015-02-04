@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+    <employee>
+        <id>2163</id>
+        <name>Kumar</name>
+        <department>Development</department>
+        <type>Permanent</type>     
+        <email>kumar@tot.com</email>
+        <description><![CDATA[<img src="https://www.somesite.com/someimage2.jpg" />]]></description>
+    </employee>
+    <employee>
+        <id>6752</id>
+        <name>Siva</name>
+        <department>DB</department>
+        <type>Contract</type>      
+        <email>siva@tot.com</email>
+           <description><![CDATA[<img src="https://www.somesite.com/someimage2.jpg" />]]></description>
+    </employee>  
+    <employee>
+        <id>6763</id>
+        <name>Timmy</name>
+        <department>Testing</department>
+        <type>Permanent</type>     
+        <email>timmy@tot.com</email>
+           <description><![CDATA[<img src="https://www.somesite.com/someimage2.jpg" />]]></description>
+    </employee>
+</employees> 
