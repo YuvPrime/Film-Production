@@ -21,26 +21,20 @@ public class Film {
          File xmlFile = new File("employees.xml");
          FileInputStream fis = new FileInputStream(xmlFile);
          xpp.setInput(fis, null);
-          int eventType = xpp.getEventType();
-         while (eventType != XmlPullParser.END_DOCUMENT) {
-        	 
-          String tagname = xpp.getName();
-          
-  if (tagname!=null) {
-
-	  if (xpp.getEventType() == XmlPullParser.START_TAG) {
+         xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
          
-	  
-        if (tagname.equalsIgnoreCase("item")) 
-        {
-            System.out.println("This is the item tag : " +tagname);
-        }
-        
-        
-  	} // end of start tag check 
+         int eventType = xpp.getEventType();
+          while (eventType != XmlPullParser.END_DOCUMENT) 
+          {       	 
+        	  String tagname = xpp.getName();
+      
+        	  if (xpp.getEventType() == XmlPullParser.START_TAG) 
+        	  {
+        	  
+        		  System.out.println("Tag name : " +tagname);
+ 
+        	  } // end of start tag check 
 
-  			} // end of if null check	 
-        	
   			eventType = xpp.next();
         
          } // end of while loop
