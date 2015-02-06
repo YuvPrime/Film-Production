@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -10,11 +11,15 @@ public class Filmnew {
 
 	static String text;
    static  String prevtag;
-
+   
     static int c=0;
+	static ArrayList<Feed> feed = new ArrayList<Feed>();;
+	static Feed f;
+
 	
 	public static void main(String[] args) throws XmlPullParserException, IOException
 	{
+		
 		  try {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 		
@@ -38,21 +43,27 @@ public class Filmnew {
         		 switch (eventType) {
                  case XmlPullParser.START_TAG:
                      if (name.equalsIgnoreCase("item")) {
-                    	 System.out.println("This is item start tag");                	
-  	 
+                    	 System.out.println("<item>");                	
+                    	f = new Feed();
+                    	 
                      }	
                      
                      if (name.equalsIgnoreCase("id")) {
                     	 if (xpp.getDepth()<3) {
                     		 
                     		 eventType = xpp.next();
-                    		 continue;
-							
+                    		 continue;	
 						}
-                    	 else
-                    	 {
-                    	 System.out.println("This is id start tag");                	
-                    	 }
+                    	System.out.print("<id>");                	                    	
+                     }
+                     
+                     if (name.equalsIgnoreCase("name")) {
+                    	 if (xpp.getDepth()<3) {
+                    		 
+                    		 eventType = xpp.next();
+                    		 continue;	
+						}
+                    	System.out.print("<name>");                	                    	
                      }
       
                      break;
@@ -63,20 +74,32 @@ public class Filmnew {
   
                  case XmlPullParser.END_TAG:
                 	 if (name.equalsIgnoreCase("item")) {
-                    	 System.out.println("This is item end tag");
+                    	 System.out.println("</item>");
+                    	feed.add(f);
                      } 
+                	 
                 	 if (name.equalsIgnoreCase("id")) {
                 		 
                 		 	if (xpp.getDepth()<3) {
-                           	 System.out.println("This is id end tag depth less than 3 : " +text);
-
                     		 eventType = xpp.next();
                     		 continue;
-							
 						}
-                		 	
-                    	 System.out.println("This is id end tag : " +text);
-                     }   
+                    	 System.out.println(text + "</id>");
+                    	 f.setId(text);
+                     }
+                	 
+                	 if (name.equalsIgnoreCase("name")) {
+                		 
+             		 	if (xpp.getDepth()<3) {
+                 		 eventType = xpp.next();
+                 		 continue;
+						}
+             		 	
+                 	 System.out.println(text + "</name>");
+                 	 f.setId(text);
+                  }
+                	 
+                	 
                 	 break;
                 	 
                  default:
