@@ -61,7 +61,7 @@ public class Filmnew {
          }
          
        
-     } // end of try 
+     }  
 		  
 		  catch (XmlPullParserException e) {
 	            e.printStackTrace();
