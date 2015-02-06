@@ -104,10 +104,8 @@ public class Filmnew {
                 	 
                  default:
                      break;
-               
-                     
-                     
-        		 		} // end of switch
+                                   
+        	} // end of switch
             	  
               
         		 eventType = xpp.next();
