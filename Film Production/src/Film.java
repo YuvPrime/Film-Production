@@ -5,10 +5,10 @@ import java.io.IOException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 public class Film {
 
 	static String text;
+	static String currentTag;
 	
 	public static void main(String[] args) throws XmlPullParserException, IOException
 	{
@@ -24,26 +24,59 @@ public class Film {
           int eventType = xpp.getEventType();
          while (eventType != XmlPullParser.END_DOCUMENT) {
         	 
+        	 
+        	 
           String tagname = xpp.getName();
+  
           
-  if (tagname!=null) {
+          switch (eventType) {
+          
+          case XmlPullParser.START_DOCUMENT:
 
-	  if (xpp.getEventType() == XmlPullParser.START_TAG) {
+        	  System.out.println("Start Document");
+        	  
+        	  
+        	  break;
+        	  
+          case XmlPullParser.START_TAG:
+
+        	 
+        	  
+        	   currentTag = xpp.getName();
+        	   
+          if (currentTag.equalsIgnoreCase("item")) {
+          
+        	  System.out.println("Yes, this is item tag");
+          } else if (currentTag != null) {
+        	  
          
-	  
-        if (tagname.equalsIgnoreCase("item")) 
-        {
-            System.out.println("This is the item tag : " +tagname);
-        }
-        
-        
-  	} // end of start tag check 
+          
+          if (currentTag.equalsIgnoreCase("title")) {
+       
+        	  System.out.println("Title tag comes here" + xpp.getText());
+        	  
+          } else if (currentTag.equalsIgnoreCase("description")) {
+          
+         	  System.out.println("Description tag comes here");
+         	  
+          } else if (currentTag.equalsIgnoreCase("link")) {
+          
+         	  System.out.println("Link tag comes here");
+          }
+          }
+          break;
+          case XmlPullParser.END_TAG:
+          currentTag = xpp.getName();
+          if (currentTag.equalsIgnoreCase("item")) {
+          
+         	  System.out.println("End of item tag");
+          }
+          break;
+          } // end of while loop
 
-  			} // end of if null check	 
-        	
+          
   			eventType = xpp.next();
-        
-         } // end of while loop
+         }
          
      } // end of try 
 		  
