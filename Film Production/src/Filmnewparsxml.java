@@ -7,7 +7,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-public class Filmnew {
+public class Filmnewparsxml {
 
 	static String text;
    static  String prevtag;
@@ -15,7 +15,7 @@ public class Filmnew {
     static int c=0;
 	static ArrayList<Feed> feed = new ArrayList<Feed>();;
 	static Feed f;
-
+	static int token;
 	
 	public static void main(String[] args) throws XmlPullParserException, IOException
 	{
@@ -23,13 +23,13 @@ public class Filmnew {
 		  try {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 		
-		 factory.setNamespaceAware(true);
+		 //factory.setNamespaceAware(true);
          XmlPullParser xpp = factory.newPullParser();
          
-         File xmlFile = new File("emp.xml");
+         File xmlFile = new File("employees.xml");
          FileInputStream fis = new FileInputStream(xmlFile);
          xpp.setInput(fis, null);
-        // xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+         xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
          int eventType=xpp.getEventType();
          xpp.nextTag();
          while (eventType!= XmlPullParser.END_DOCUMENT) {
@@ -37,40 +37,60 @@ public class Filmnew {
              
              if(name!=null)
              {
-            	 //System.out.println(xpp.getName() + " : " +xpp.getDepth());
+            	// System.out.println("Tag name : " +name + "and its depth : " +xpp.getDepth());
              }
             	
         		 switch (eventType) {
                  case XmlPullParser.START_TAG:
                      if (name.equalsIgnoreCase("item")) {
-                    	 System.out.println("<item>");                	
+                    	 System.out.println("<item>");
+                    	 
+                    	 
                     	f = new Feed();
                     	 
                      }	
                      
-                     if (name.equalsIgnoreCase("id")) {
-                    	 if (xpp.getDepth()<3) {
+                     if (name.equalsIgnoreCase("title")) {
+                    	 if (xpp.getDepth()<4) {
                     		 
                     		 eventType = xpp.next();
                     		 continue;	
 						}
-                    	System.out.print("<id>");                	                    	
+                    	System.out.print("<title>");                	                    	
                      }
                      
-                     if (name.equalsIgnoreCase("name")) {
-                    	 if (xpp.getDepth()<3) {
+                     if (name.equalsIgnoreCase("content:encoded")) {
+                    	 if (xpp.getDepth()<4) {
                     		 
                     		 eventType = xpp.next();
                     		 continue;	
 						}
-                    	System.out.print("<name>");                	                    	
+                    	System.out.print("<content:encoded>");
+                    	
+                    //	System.out.println("yeh" + xpp.nextText());
+                    	
+                         //xpp.nextToken();
+                         
                      }
       
                      break;
   
                  case XmlPullParser.TEXT:
+                	 
+                	 
+                	 
+                      
                      text = xpp.getText();
+                         System.out.println("hoo " +xpp.getName() +text);
+                     
                      break;
+                     
+                     
+                 case XmlPullParser.CDSECT:
+                	 System.out.println("yeah");
+                	 
+                	 break;
+                     
   
                  case XmlPullParser.END_TAG:
                 	 if (name.equalsIgnoreCase("item")) {
@@ -78,24 +98,27 @@ public class Filmnew {
                     	feed.add(f);
                      } 
                 	 
-                	 if (name.equalsIgnoreCase("id")) {
+                	 if (name.equalsIgnoreCase("title")) {
                 		 
-                		 	if (xpp.getDepth()<3) {
+                		 	if (xpp.getDepth()<4) {
                     		 eventType = xpp.next();
                     		 continue;
 						}
-                    	 System.out.println(text + "</id>");
+                    	 System.out.println(text + "</title>");
                     	 f.setId(text);
                      }
                 	 
-                	 if (name.equalsIgnoreCase("name")) {
+                	 if (name.equalsIgnoreCase("content:encoded")) {
                 		 
-             		 	if (xpp.getDepth()<3) {
+             		 	if (xpp.getDepth()<4) {
                  		 eventType = xpp.next();
                  		 continue;
 						}
              		 	
-                 	 System.out.println(text + "</name>");
+                 	 System.out.println(text + "</content:encoded>");
+                 	 
+					
+                 	 
                  	 f.setName(text);
                   }
                 	 
@@ -123,11 +146,13 @@ public class Filmnew {
 		  
 		 
 		  
-		  for (int i = 0; i < 2; i++) {
-			
-			  System.out.println(feed.get(i).getId());
-			  System.out.println(feed.get(i).getName());
-		}
+//		  for (int i = 0; i < 2; i++) {
+//			
+//			  System.out.println(feed.get(i).getId());
+//			  System.out.println(feed.get(i).getName());
+//			  
+//			  
+//		}
 		  
  }
 
