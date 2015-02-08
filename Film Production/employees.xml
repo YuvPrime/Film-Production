@@ -2,10 +2,15 @@
 <channel>
 <title>Only Kollywood</title>
 <atom:link href="http://www.onlykollywood.com/feed/" rel="self" type="application/rss+xml"/>
+<<<<<<< HEAD
 <link>http://www.onlykollywood.com</link>
 <description>Tamil Cinema News | Lates Tamil movies</description>
 
+=======
+<link>http://www.onlykollywood.com</link><description>Tamil Cinema News | Lates Tamil movies</description>
+>>>>>>> branch 'master' of https://github.com/YuvPrime/Film-Production
 <item>
+<<<<<<< HEAD
 <title>
  is by far Ajith’s best work: Gautham Menon
 </title>
@@ -15,6 +20,11 @@ http://www.onlykollywood.com/yennai-arindhaal-is-by-far-ajiths-best-work-gautham
 <comments>
 http://www.onlykollywood.com/yennai-arindhaal-is-by-far-ajiths-best-work-gautham-menon/#comments
 </comments>
+=======
+<title>YA is by far Ajith’s best work: Gautham Menon</title>
+<link>http://www.onlykollywood.com/yennai-arindhaal-is-by-far-ajiths-best-work-gautham-menon/</link>
+<comments>http://www.onlykollywood.com/yennai-arindhaal-is-by-far-ajiths-best-work-gautham-menon/#comments</comments>
+>>>>>>> branch 'master' of https://github.com/YuvPrime/Film-Production
 <pubDate>Wed, 04 Feb 2015 08:40:01 +0000</pubDate>
 <dc:creator>
 <![CDATA[ Only Kollywood ]]>
